@@ -29,9 +29,6 @@ public class Task {
     @Column
     private String question;
 
-    @Column
-    private String answerText;
-
     @JsonBackReference(value="Test-movement")
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name ="test_id")
@@ -47,6 +44,7 @@ public class Task {
     @OneToMany(mappedBy="task", cascade = CascadeType.MERGE , fetch = FetchType.EAGER)
     private List<Result> taskResults;
 
+
     public Task() {
     }
 
@@ -60,7 +58,6 @@ public class Task {
         this.taskType = taskType;
         this.question = question;
         this.test = test;
-        this.answerText = text;
     }
 
 }

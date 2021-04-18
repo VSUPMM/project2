@@ -8,11 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-
 public interface ResultRepository extends JpaRepository<Result, ResultId> {
 
     List<Result> findByTest (Test test);
-
     List<Result> findByUserAndTest (User user, Test test);
 
 }

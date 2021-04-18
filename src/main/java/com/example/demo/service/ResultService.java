@@ -145,7 +145,7 @@ public class ResultService {
             }
             else throw new AnswerNotFoundException();
         }
-        if (task.getTaskType() == TaskType.PRACTICAL) {
+   /*     if (task.getTaskType() == TaskType.PRACTICAL) {
 
             rightAnswer = task.getAnswerText();
 
@@ -153,7 +153,7 @@ public class ResultService {
                 return toFormatQuery(rightAnswer).equals(toFormatQuery(userAnswer));
             }
             else throw new AnswerNotFoundException();
-        }
+        }*/
 
         else throw new TaskNotFoundException(task.getTaskId());
     }
@@ -202,9 +202,9 @@ public class ResultService {
             List<Result> results = resultRepository.findByUserAndTest(user, test);
 
             if (results.size() == 0)
-                userResultTOs.add(new UserResultTO(test.getName()));
+                userResultTOs.add(new UserResultTO(test.getTestId(), test.getName()));
             else
-                userResultTOs.add(new UserResultTO(test.getName(),
+                userResultTOs.add(new UserResultTO(test.getTestId(), test.getName(),
                         (int) (results.stream().filter(Result::getCorrect).count())/results.size()*100));
         }
 

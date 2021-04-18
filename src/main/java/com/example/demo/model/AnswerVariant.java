@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import com.example.demo.model.task.Task;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 import javax.persistence.*;

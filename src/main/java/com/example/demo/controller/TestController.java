@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.web.bind.annotation.*;
 
-
 import javax.annotation.security.RolesAllowed;
 import java.net.URISyntaxException;
 import java.util.List;

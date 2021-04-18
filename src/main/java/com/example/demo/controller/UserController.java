@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.basicAuth.JwtProvider;
-import com.example.demo.basicAuth.JwtResponse;
+/*import com.example.demo.basicAuth.JwtProvider;
+import com.example.demo.basicAuth.JwtResponse;*/
 import com.example.demo.model.dto.pages.LoginForm;
 import com.example.demo.model.User;
 import com.example.demo.model.dto.pages.SignUpForm;
@@ -10,18 +10,19 @@ import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
+/*import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;*/
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/auth")
 public class UserController {
 
     @Autowired
@@ -40,21 +41,28 @@ public class UserController {
     }
 
 
-    @GetMapping("/users")
+    @GetMapping("/api/auth/users")
     public ResponseEntity<List<User>> all() {
         return ResponseEntity.ok(userService.getAll());
     }
 
-    @Autowired
+
+
+   /* @Autowired
     PasswordEncoder encoder;
 
     @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
-    JwtProvider jwtProvider;
+    JwtProvider jwtProvider;*/
 
-    @PostMapping("/signin")
+    @RequestMapping(value="/api/auth/signin", method={RequestMethod.OPTIONS,RequestMethod.GET})
+    public String authenticateUser( ) {
+        return "ok";
+    }
+
+    /*@PostMapping("/api/auth/signin")
     public ResponseEntity<?> authenticateUser( @RequestBody LoginForm loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -67,10 +75,11 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtProvider.generateJwtToken(authentication);
-        return ResponseEntity.ok(new JwtResponse(jwt));
+        return ResponseEntity.ok(new JwtResponse(jwt, userService.getIdByUsername(loginRequest.getUsername()),
+                userService.getRoleByUsername(loginRequest.getUsername())));
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/api/auth/signup")
     public ResponseEntity<String> registerUser(@RequestBody SignUpForm signUpRequest) {
         if(userRepository.findByLogin(signUpRequest.getLogin())!=null) {
             return new ResponseEntity<String>("Fail -> Username is already taken!",
@@ -110,5 +119,5 @@ public class UserController {
         userRepository.save(user);
 
         return ResponseEntity.ok().body("User registered successfully!");
-    }
+    }*/
 }

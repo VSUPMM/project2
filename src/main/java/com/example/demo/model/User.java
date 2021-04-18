@@ -4,9 +4,9 @@ import com.example.demo.model.result.Result;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
+/*import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetails;*/
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "user", schema = "public")
-public class User implements UserDetails {
+public class User /*implements UserDetails*/ {
 
     public static final String ROLE_STUDENT="STUDENT";
     public static final String ROLE_TEACHER="ADMIN";
@@ -64,7 +64,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    @Override
+    /*@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+ role));
     }
@@ -97,5 +97,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }*/
+
+    public Long getUserId() {
+        return userId;
     }
 }

@@ -14,13 +14,15 @@ public class ResultId implements Serializable {
     @Column(name = "fk_task")
     private Long taskId;
 
-    private ResultId() {}
-
     public ResultId(
             Long taskId, Long userId
     ) {
         this.userId = userId;
         this.taskId = taskId;
+    }
+
+    public ResultId() {
+
     }
 
     public Long getuserId() {

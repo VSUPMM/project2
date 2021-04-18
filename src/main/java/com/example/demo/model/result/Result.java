@@ -22,18 +22,19 @@ public class Result {
 
     @JsonBackReference(value="UserResult-movement")
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @MapsId("user")
-    @JoinColumn(name = "fk_user")
+    @MapsId("userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @JsonBackReference(value="TaskResult-movement")
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @MapsId("task")
-    @JoinColumn(name = "fk_task")
+    @MapsId("taskId")
+    @JoinColumn(name = "task_id")
     private Task task;
 
     @JsonBackReference(value="TestResult-movement")
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @MapsId("testId")
     @JoinColumn(name = "test_id")
     private Test test;
 

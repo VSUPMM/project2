@@ -5,4 +5,5 @@
     <persistence-unit name="Eclipselink_JPA">
 
     </persistence-unit>
+
 </persistence>

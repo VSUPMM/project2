@@ -3,10 +3,17 @@ package com.example.demo.controller;
 import com.example.demo.model.task.Task;
 
 import com.example.demo.service.TaskService;
+import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.URISyntaxException;
 import java.util.List;
 
@@ -45,5 +52,13 @@ public class TaskController {
     ResponseEntity<Object> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+    public String index(@ModelAttribute("model") ModelMap model)  {
+
+        model.addAttribute("tasks", taskService.getAll());
+        return "index";
     }
 }

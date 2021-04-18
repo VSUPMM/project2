@@ -2,10 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.exception.TaskNotFoundException;
 import com.example.demo.model.AnswerVariant;
-import com.example.demo.model.Test;
-import com.example.demo.model.User;
-import com.example.demo.model.embeddedId.ResultId;
-import com.example.demo.model.result.Result;
 import com.example.demo.model.task.Task;
 
 import com.example.demo.repository.TaskRepository;
@@ -97,7 +93,6 @@ public class TaskService {
         Task updatedTask = repository.findById(id)
                 .map(task -> {
                     task.setQuestion(newTask.getQuestion());
-                    task.setAnswerText(newTask.getAnswerText());
                     List<AnswerVariant> answers = newTask.getPossibleAnswers();
                     if (answers != null)
                     for(AnswerVariant answer :answers){
